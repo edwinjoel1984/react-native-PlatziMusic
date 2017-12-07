@@ -1,0 +1,4 @@
+Application name	PlatziMusic
+API key	a9f16d506b853b628ad532fac39f89d7
+Shared secret	1a8aa19798554141a25336781396b7fb
+Registered to	edwinjoel1984
