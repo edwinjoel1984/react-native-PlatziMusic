@@ -20,6 +20,7 @@ export default class LoginView extends Component<{}> {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Bienvenidos a Platzi Music</Text>
+        {/* <LoginButton /> */}
       </View>
     );
   }
