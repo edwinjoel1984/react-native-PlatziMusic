@@ -10,33 +10,22 @@ import {
   StyleSheet,
   View, 
 } from 'react-native';
+ 
+import {Scene, Router} from 'react-native-router-flux';
 
-import ArtistList from './ArtistList'
-import { getArtists } from './api-client'
+import HomeView from './HomeView.js';
+import LoginView from './LoginView.js';
+import ArtistDetailView from './ArtistDetailView.js';
 
 export default class App extends Component<{}> {
-  state = {
-    artists : []
-  }
-  componentDidMount(){
-    getArtists().then(data => this.setState({artists: data}));
-  }
   render() {
-    
-    const artists = this.state.artists;
-    return (
-      <View style={styles.container}>
-        <ArtistList artists={artists} />
-      </View>
-    );
+    const isAndroid= Platform.OS !== 'android';
+    return <Router>
+      <Scene key="root">
+        {/* <Scene key="loginView" component={LoginView} hideNavBar={isAndroid} /> */}
+        <Scene key="home" component={HomeView} hideNavBar={isAndroid} />
+        <Scene key="artistDetail" component={ArtistDetailView} hideNavBar={isAndroid}/>
+      </Scene>
+    </Router>
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'lightgray',
-    paddingTop: 50
-  }
-
-});

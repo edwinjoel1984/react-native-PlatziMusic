@@ -7,10 +7,13 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  ListView
+  ListView,
+  TouchableOpacity
 } from 'react-native';
 
 import ArtistBox from './ArtistBox'
+import { Actions } from 'react-native-router-flux';
+import ArtistDetailView from './ArtistDetailView.js'
 
 export default class ArtistList extends Component<{}> {
   constructor(props) {
@@ -33,6 +36,9 @@ export default class ArtistList extends Component<{}> {
         dataSource: this.state.dataSource.cloneWithRows(data)
     })
   }
+  handlePress(artist){
+    Actions.artistDetail({ artist });
+  }
 
   render() {
    
@@ -40,8 +46,14 @@ export default class ArtistList extends Component<{}> {
       <ListView
       enableEmptySections = {true}
       dataSource={this.state.dataSource}
-      renderRow={(artist) => <ArtistBox artist={artist}></ArtistBox>}
-    />
+      renderRow={(artist) => {
+        return (
+          <TouchableOpacity onPress={ () => this.handlePress(artist)}>
+            <ArtistBox artist={artist}/>
+          </TouchableOpacity>
+        )
+      }}
+      />
     );
   }
 }
