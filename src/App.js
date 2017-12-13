@@ -19,13 +19,13 @@ import ArtistDetailView from './ArtistDetailView.js';
 
 export default class App extends Component<{}> {
   render() {
-    const isAndroid= Platform.OS !== 'android';
+    const isAndroid= Platform.OS === 'android';
     return <Router>
-      <Scene key="root">
-        <Scene key="login" component={LoginView} hideNavBar={isAndroid}  />
+      <Scene key="root" hideNavBar={isAndroid}> 
+        <Scene key="login" component={LoginView}   />
         <Scene key="secundary">
           <Scene key="home" component={HomeView} hideNavBar={isAndroid} />
-          <Scene key="artistDetail" component={ArtistDetailView} hideNavBar={isAndroid}/>
+          <Scene key="artistDetail" component={ArtistDetailView} hideNavBar={false} />
       </Scene>
       </Scene>
       
